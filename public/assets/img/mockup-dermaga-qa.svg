@@ -1,0 +1,95 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1200" height="750" viewBox="0 0 1200 750" role="img" aria-label="Mockup laporan pengujian website DERMAGAJTI dengan Playwright">
+  <defs>
+    <linearGradient id="bg" x1="0" y1="0" x2="1" y2="1">
+      <stop offset="0" stop-color="#0f1720"/>
+      <stop offset="1" stop-color="#1b2a35"/>
+    </linearGradient>
+  </defs>
+
+  <rect width="1200" height="750" fill="url(#bg)"/>
+
+  <!-- Top bar -->
+  <rect width="1200" height="58" fill="#0a1118"/>
+  <circle cx="34" cy="29" r="6" fill="#ef5350"/>
+  <circle cx="54" cy="29" r="6" fill="#f5b301"/>
+  <circle cx="74" cy="29" r="6" fill="#22c55e"/>
+  <text x="600" y="35" text-anchor="middle" font-family="Consolas, monospace" font-size="14" fill="#9fb3c8">automation-website-testing — Playwright report</text>
+
+  <!-- Header -->
+  <text x="60" y="122" font-family="Arial, sans-serif" font-size="36" font-weight="800" fill="#f2ece1">DERMAGAJTI WEBSITE TESTING</text>
+  <text x="60" y="154" font-family="Arial, sans-serif" font-size="16" fill="#8fa6b8">Target: https://jti.polinema.ac.id/dermaga · chromium · 40.24 s</text>
+
+  <!-- Summary cards -->
+  <g font-family="Arial, sans-serif">
+    <rect x="60" y="186" width="168" height="92" rx="6" fill="#14212b" stroke="#2b3d4d"/>
+    <text x="80" y="218" font-size="12" fill="#8fa6b8">PASSED</text>
+    <text x="80" y="258" font-size="34" font-weight="800" fill="#22c55e">15</text>
+
+    <rect x="240" y="186" width="168" height="92" rx="6" fill="#14212b" stroke="#2b3d4d"/>
+    <text x="260" y="218" font-size="12" fill="#8fa6b8">FAILED</text>
+    <text x="260" y="258" font-size="34" font-weight="800" fill="#ef5350">3</text>
+
+    <rect x="420" y="186" width="168" height="92" rx="6" fill="#14212b" stroke="#2b3d4d"/>
+    <text x="440" y="218" font-size="12" fill="#8fa6b8">SKIPPED</text>
+    <text x="440" y="258" font-size="34" font-weight="800" fill="#f5b301">1</text>
+
+    <rect x="600" y="186" width="168" height="92" rx="6" fill="#14212b" stroke="#2b3d4d"/>
+    <text x="620" y="218" font-size="12" fill="#8fa6b8">TOTAL</text>
+    <text x="620" y="258" font-size="34" font-weight="800" fill="#f2ece1">19</text>
+
+    <rect x="780" y="186" width="360" height="92" rx="6" fill="#14212b" stroke="#2b3d4d"/>
+    <text x="800" y="218" font-size="12" fill="#8fa6b8">PASS RATE</text>
+    <text x="800" y="258" font-size="34" font-weight="800" fill="#22c55e">83.3%</text>
+    <rect x="960" y="230" width="160" height="10" rx="5" fill="#22323f"/>
+    <rect x="960" y="230" width="133" height="10" rx="5" fill="#22c55e"/>
+  </g>
+
+  <!-- Test list -->
+  <g font-family="Consolas, monospace" font-size="13">
+    <rect x="60" y="306" width="1080" height="396" rx="6" fill="#0b141b" stroke="#2b3d4d"/>
+
+    <text x="80" y="336" fill="#5f7b90" font-size="12">navigation.spec.js</text>
+    <text x="400" y="336" fill="#22c55e">✓ homepage reachable (HTTP 200)</text>
+    <text x="1120" y="336" text-anchor="end" fill="#5f7b90" font-size="12">1.53s</text>
+
+    <text x="400" y="364" fill="#22c55e">✓ page title is not empty</text>
+    <text x="1120" y="364" text-anchor="end" fill="#5f7b90" font-size="12">1.51s</text>
+
+    <text x="400" y="392" fill="#22c55e">✓ no console errors</text>
+    <text x="1120" y="392" text-anchor="end" fill="#5f7b90" font-size="12">2.55s</text>
+
+    <text x="80" y="424" fill="#5f7b90" font-size="12">accessibility.spec.js</text>
+    <text x="400" y="424" fill="#22c55e">✓ lang, alt text, unique IDs, accessible names</text>
+    <text x="1120" y="424" text-anchor="end" fill="#5f7b90" font-size="12">8.21s</text>
+
+    <text x="80" y="456" fill="#5f7b90" font-size="12">links.spec.js</text>
+    <text x="400" y="456" fill="#22c55e">✓ internal links resolve without HTTP errors</text>
+    <text x="1120" y="456" text-anchor="end" fill="#5f7b90" font-size="12">2.47s</text>
+
+    <text x="80" y="488" fill="#5f7b90" font-size="12">images.spec.js</text>
+    <text x="400" y="488" fill="#22c55e">✓ images load successfully</text>
+    <text x="1120" y="488" text-anchor="end" fill="#5f7b90" font-size="12">2.13s</text>
+
+    <text x="80" y="520" fill="#5f7b90" font-size="12">forms.spec.js</text>
+    <text x="400" y="520" fill="#22c55e">✓ forms detected, controls have labels</text>
+    <text x="1120" y="520" text-anchor="end" fill="#5f7b90" font-size="12">2.98s</text>
+
+    <text x="400" y="548" fill="#f5b301">– primary navigation found</text>
+    <text x="1120" y="548" text-anchor="end" fill="#5f7b90" font-size="12">skip</text>
+
+    <text x="80" y="580" fill="#5f7b90" font-size="12">responsive.spec.js</text>
+    <text x="400" y="580" fill="#ef5350">✕ desktop 1440x900 — overflow 360px</text>
+    <text x="1120" y="580" text-anchor="end" fill="#5f7b90" font-size="12">2.74s</text>
+
+    <text x="400" y="608" fill="#ef5350">✕ tablet 810x1080 — overflow 203px</text>
+    <text x="1120" y="608" text-anchor="end" fill="#5f7b90" font-size="12">2.79s</text>
+
+    <text x="400" y="636" fill="#ef5350">✕ mobile 390x844 — overflow 98px</text>
+    <text x="1120" y="636" text-anchor="end" fill="#5f7b90" font-size="12">1.61s</text>
+
+    <text x="80" y="676" fill="#22c55e">✓ 15 passed</text>
+    <text x="250" y="676" fill="#ef5350">3 failed</text>
+    <text x="360" y="676" fill="#f5b301">1 skipped</text>
+    <text x="1120" y="676" text-anchor="end" fill="#9fb3c8" font-size="12">PASS/FAIL/SKIP + screenshots</text>
+  </g>
+</svg>

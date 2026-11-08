@@ -1,0 +1,17 @@
+{
+  "name": "portfolio-daniel-assaqovi",
+  "type": "module",
+  "version": "2.0.0",
+  "private": true,
+  "description": "Portofolio Muhammad Daniel Assaqovi — dibangun dengan Astro",
+  "scripts": {
+    "dev": "astro dev",
+    "start": "astro dev",
+    "build": "astro build",
+    "preview": "astro preview",
+    "astro": "astro"
+  },
+  "dependencies": {
+    "astro": "^7.4.7"
+  }
+}

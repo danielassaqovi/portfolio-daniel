@@ -1,0 +1,46 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 400 400" role="img" aria-label="Abstract interface wireframe illustration">
+  <defs>
+    <linearGradient id="bg" x1="0" y1="0" x2="1" y2="1">
+      <stop offset="0" stop-color="#101318"/>
+      <stop offset="1" stop-color="#07080a"/>
+    </linearGradient>
+    <linearGradient id="accent" x1="0" y1="0" x2="1" y2="0">
+      <stop offset="0" stop-color="#c9a45c"/>
+      <stop offset="1" stop-color="#6fd6c2"/>
+    </linearGradient>
+  </defs>
+  <rect width="400" height="400" fill="url(#bg)"/>
+  <rect x="30" y="48" width="340" height="304" rx="14" fill="#0b0d11" stroke="#30343d" stroke-width="2"/>
+  <path d="M30 88h340" stroke="#30343d" stroke-width="2"/>
+  <g fill="#f2ece1" opacity=".26">
+    <circle cx="52" cy="68" r="4"/>
+    <circle cx="68" cy="68" r="4"/>
+    <circle cx="84" cy="68" r="4"/>
+  </g>
+  <rect x="52" y="112" width="296" height="56" rx="8" fill="#151920"/>
+  <rect x="68" y="128" width="110" height="10" rx="5" fill="#f2ece1" opacity=".72"/>
+  <rect x="68" y="146" width="168" height="7" rx="3.5" fill="#f2ece1" opacity=".26"/>
+  <rect x="286" y="126" width="44" height="28" rx="6" fill="#c9a45c" opacity=".85"/>
+  <g>
+    <rect x="52" y="186" width="138" height="88" rx="8" fill="#151920" stroke="#2b2f37"/>
+    <rect x="66" y="200" width="66" height="8" rx="4" fill="#6fd6c2" opacity=".6"/>
+    <path d="M66 254l22-22 18 12 22-26 20 18" fill="none" stroke="#c9a45c" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"/>
+    <rect x="204" y="186" width="144" height="88" rx="8" fill="#151920" stroke="#2b2f37"/>
+    <rect x="220" y="202" width="54" height="8" rx="4" fill="#f2ece1" opacity=".4"/>
+    <rect x="220" y="220" width="108" height="34" rx="4" fill="none" stroke="#f2ece1" stroke-opacity=".18"/>
+    <path d="M232 244l14-14 12 8 16-18 14 10" fill="none" stroke="#6fd6c2" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+  </g>
+  <g fill="#151920" stroke="#2b2f37">
+    <rect x="52" y="292" width="88" height="36" rx="6"/>
+    <rect x="150" y="292" width="88" height="36" rx="6"/>
+    <rect x="248" y="292" width="100" height="36" rx="6"/>
+  </g>
+  <g fill="#c9a45c" opacity=".62">
+    <rect x="66" y="307" width="40" height="6" rx="3"/>
+    <rect x="164" y="307" width="28" height="6" rx="3"/>
+  </g>
+  <rect x="262" y="302" width="72" height="16" rx="8" fill="url(#accent)" opacity=".55"/>
+  <g fill="none" stroke="#f2ece1" stroke-width="1" opacity=".1">
+    <path d="M52 108h296M52 180h296M52 284h296"/>
+  </g>
+</svg>

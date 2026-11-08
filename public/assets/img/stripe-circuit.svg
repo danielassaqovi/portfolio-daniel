@@ -1,0 +1,53 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 400 400" role="img" aria-label="Abstract circuit board illustration">
+  <defs>
+    <linearGradient id="bg" x1="0" y1="0" x2="1" y2="1">
+      <stop offset="0" stop-color="#0d1014"/>
+      <stop offset="1" stop-color="#07080a"/>
+    </linearGradient>
+    <linearGradient id="chip" x1="0" y1="0" x2="1" y2="1">
+      <stop offset="0" stop-color="#c9a45c"/>
+      <stop offset="1" stop-color="#8c6c34"/>
+    </linearGradient>
+    <filter id="blur" x="-40%" y="-40%" width="180%" height="180%">
+      <feGaussianBlur stdDeviation="10"/>
+    </filter>
+  </defs>
+  <rect width="400" height="400" fill="url(#bg)"/>
+  <g opacity=".22" stroke="#c9a45c" stroke-width="1">
+    <path d="M28 66h78v52h56M28 150h44m-44 0v52h102"/>
+    <path d="M372 72h-72v44h-58m130 44h-56v54h-42"/>
+    <path d="M36 334h86v-46h60m-146 74h130"/>
+    <path d="M364 330h-74v-42h-54m128 76h-58"/>
+    <path d="M132 28v30m36-30v18m36-18v46m36-46v26"/>
+    <path d="M132 372v-28m36 28v-16m36 16v-42m36 42v-24"/>
+    <path d="M28 118h28m-28 30h14M372 118h-28m28 30h-14"/>
+  </g>
+  <g opacity=".42" fill="#6fd6c2">
+    <circle cx="106" cy="66" r="3.5"/>
+    <circle cx="300" cy="116" r="3.5"/>
+    <circle cx="64" cy="202" r="3.5"/>
+    <circle cx="298" cy="288" r="3.5"/>
+    <circle cx="122" cy="288" r="3.5"/>
+  </g>
+  <circle cx="200" cy="200" r="112" fill="#c9a45c" opacity=".08" filter="url(#blur)"/>
+  <g transform="rotate(-8 200 200)">
+    <rect x="112" y="112" width="176" height="176" rx="24" fill="#0a0c10" stroke="#3a3d46" stroke-width="2"/>
+    <rect x="134" y="134" width="132" height="132" rx="16" fill="url(#chip)" opacity=".16"/>
+    <rect x="134" y="134" width="132" height="132" rx="16" fill="none" stroke="#c9a45c" stroke-width="2" opacity=".55"/>
+    <g stroke="#c9a45c" stroke-width="4" stroke-linecap="round" opacity=".8">
+      <path d="M112 152h-22M112 184h-22M112 216h-22M112 248h-22"/>
+      <path d="M288 152h22M288 184h22M288 216h22M288 248h22"/>
+      <path d="M152 112v-22M184 112v-22M216 112v-22M248 112v-22"/>
+      <path d="M152 288v22M184 288v22M216 288v22M248 288v22"/>
+    </g>
+    <g fill="none" stroke="#f2ece1" stroke-width="2" opacity=".75">
+      <path d="M158 176h84M158 200h54M158 224h74"/>
+    </g>
+    <circle cx="158" cy="248" r="5" fill="#6fd6c2"/>
+    <circle cx="176" cy="248" r="5" fill="#c9a45c"/>
+  </g>
+  <g fill="none" stroke="#f2ece1" stroke-width="1" opacity=".2">
+    <circle cx="200" cy="200" r="156"/>
+    <circle cx="200" cy="200" r="176"/>
+  </g>
+</svg>

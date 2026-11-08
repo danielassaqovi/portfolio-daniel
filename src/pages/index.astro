@@ -1,0 +1,402 @@
+---
+/**
+ * Halaman utama portofolio.
+ *
+ * Semua markup dipindahkan apa adanya dari index.html versi statis:
+ * struktur section, atribut data-*, dan id yang dipakai JavaScript
+ * tidak diubah sama sekali. Skrip dimuat dengan `is:inline` supaya
+ * urutan eksekusi dan semantik (script klasik, bukan module) tetap
+ * identik dengan sebelumnya.
+ */
+import BaseLayout from '../layouts/BaseLayout.astro';
+---
+
+<BaseLayout
+  title="Muhammad Daniel Assaqovi — Web Developer & QA Engineer"
+  description="Portofolio Muhammad Daniel Assaqovi: web development, mobile development, dan software testing. Dibangun dengan GSAP dan Lenis."
+  ogDescription="Portofolio Muhammad Daniel Assaqovi: web development, mobile development, dan software testing."
+>
+  <a class="skip-link" href="#content">Lewati ke konten</a>
+
+  <div class="grain" aria-hidden="true"></div>
+
+  <!-- ================= PRELOADER ================= -->
+  <div class="loader" id="loader" aria-hidden="true"><span class="sr-only">Memuat halaman</span></div>
+
+  <!-- ================= NAV ================= -->
+  <div class="sub-nav" id="nav">
+    <nav class="sub-nav-links" aria-label="Navigasi utama">
+      <a class="nav-link-item current" href="#home" data-nav>Home</a>
+      <a class="nav-link-item" href="#about" data-nav>About</a>
+      <a class="nav-link-item" href="#experience" data-nav>Experience</a>
+      <a class="nav-link-item" href="#projects" data-nav>Projects</a>
+      <a class="nav-link-item" href="#contact" data-nav>Contact</a>
+    </nav>
+  </div>
+
+  <div class="scroll-progress" aria-hidden="true"><span id="scroll-progress-bar"></span></div>
+
+  <main id="smooth-content">
+    <!-- ================= HERO ================= -->
+    <section class="hero" id="home">
+      <div class="hero-main">
+        <p class="hero-kicker" data-hero="kicker">
+          <span class="hero-kicker-dot" aria-hidden="true"></span>
+          <span data-bind="role">Web Developer &amp; QA Engineer</span>
+        </p>
+
+        <h1 class="hero-text">
+          <span class="hero-line" data-hero-line data-bind="heroLines.0">MUHAMMAD DANIEL</span>
+          <span class="hero-line hero-line--accent" data-hero-line data-bind="heroLines.1">"ASSAQOVI"</span>
+        </h1>
+
+        <div class="hero-toggle-wrap" data-hero="toggle">
+          <label class="toggle" data-toggle>
+            <span class="sr-only">Aktifkan mode tampilan lembar keahlian</span>
+            <span class="toggle-shadow" aria-hidden="true"></span>
+            <input type="checkbox" class="toggle-input" id="hero-toggle" role="switch" aria-label="Aktifkan mode lembar keahlian">
+            <span class="toggle-track" aria-hidden="true">
+              <span class="toggle-ball"></span>
+            </span>
+          </label>
+        </div>
+
+        <p class="hero-tagline" data-hero="copy" data-bind="tagline">
+          Membangun antarmuka yang rapi, menguji sistem secara menyeluruh, dan menjaga kualitas produk tetap terukur.
+        </p>
+
+        <div class="hero-actions" data-hero="copy">
+          <a class="btn btn--hero btn--roll" href="#content" data-scroll aria-label="Scroll untuk selengkapnya">
+            <span class="btn-roll" aria-hidden="true">
+              <span class="btn-roll-line" data-roll-line>Scroll untuk selengkapnya</span>
+              <span class="btn-roll-line btn-roll-line--clone" data-roll-line>Scroll untuk selengkapnya</span>
+            </span>
+          </a>
+        </div>
+      </div>
+
+      <!-- Layer kedua saat toggle aktif: pita diagonal bergerak -->
+      <div class="hero-alt" data-hero="alt" aria-hidden="true">
+        <div class="hero-stripes" id="hero-stripes"></div>
+      </div>
+
+      <p class="sr-only" id="hero-mode-status" role="status" aria-live="polite"></p>
+
+      <div class="hero-scroll-hint" aria-hidden="true">
+        <span>SCROLL</span>
+        <span class="hero-scroll-line"></span>
+      </div>
+    </section>
+
+    <div id="content"></div>
+
+    <!-- ================= ABOUT ================= -->
+    <section class="about" id="about">
+      <div class="about-scroll">
+        <div class="about-sticky">
+          <div class="marquee-band about-ticker" aria-hidden="true">
+            <div class="marquee-track" id="about-marquee"></div>
+          </div>
+
+          <div class="about-stage">
+            <div class="about-word font-c" aria-hidden="true">
+              <span class="about-word-char">A</span><span class="about-word-char">B</span><span class="about-word-char">O</span><span class="about-word-char">U</span><span class="about-word-char">T</span><span class="about-word-space"> </span><span class="about-word-char">M</span><span class="about-word-char">E</span>
+            </div>
+
+            <div class="about-sky" data-about-sky>
+              <div class="about-scaler" data-about-scaler>
+                <div class="about-card" data-about-card>
+                  <span class="about-corner about-corner--tl" aria-hidden="true"></span>
+                  <span class="about-corner about-corner--br" aria-hidden="true"></span>
+
+                  <figure class="about-photo-wrap" data-about-photo>
+                    <span class="about-photo-back" aria-hidden="true"></span>
+                    <img class="about-photo" src="assets/img/profile.jpeg" alt="Foto profil Muhammad Daniel Assaqovi" data-bind-src="about.photo" data-bind-alt="about.photoAlt" width="1086" height="1448">
+                    <figcaption>PORTRAIT / 2026</figcaption>
+                  </figure>
+
+                  <div class="about-body">
+                    <p class="section-kicker">Tentang Saya</p>
+                    <h2 class="about-name font-c" data-bind="about.heading">Muhammad Daniel Assaqovi</h2>
+                    <p class="about-role" data-bind="about.subheading">Web Developer &amp; QA Engineer</p>
+
+                    <div class="about-copy" data-about-copy>
+                      <p>
+                        Saya seorang <strong>web developer dan QA engineer</strong> yang berfokus pada antarmuka yang bersih,
+                        performa yang stabil, dan pengujian yang dapat diulang.
+                      </p>
+                      <p>
+                        Menggunakan <strong>JavaScript</strong>, <strong>Playwright</strong>, dan <strong>Docker</strong>
+                        untuk membangun produk sekaligus menjaga kualitasnya.
+                      </p>
+                    </div>
+
+                    <div class="about-actions">
+                      <a class="btn" href="#contact" data-scroll><span>Hubungi Saya</span><span class="btn-arrow" aria-hidden="true">→</span></a>
+                      <a class="btn btn--ghost" href="#" data-bind-href="cvUrl" target="_blank" rel="noreferrer">
+                        <span>Unduh CV</span><span class="btn-arrow" aria-hidden="true">↓</span>
+                      </a>
+                    </div>
+                  </div>
+                </div>
+              </div>
+
+              <ul class="social-list about-socials" id="about-socials" aria-label="Tautan sosial"></ul>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ================= EXPERIENCE ================= -->
+    <section class="experience" id="experience">
+      <div class="container">
+        <header class="section-head section-head--center">
+          <p class="section-kicker">Perjalanan</p>
+          <h2 class="section-title font-c">Project Experience &amp; Education</h2>
+          <p class="section-sub">Pengalaman mengerjakan project dan pendidikan yang membentuk cara saya berkarya.</p>
+        </header>
+
+        <div class="xp-layout">
+          <aside class="xp-rail" id="xp-rail" aria-label="Daftar pengalaman"></aside>
+          <div class="xp-list" id="xp-list"></div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ================= QUOTE ================= -->
+    <section class="quote" aria-label="Kutipan">
+      <blockquote class="quote-text font-c" id="quote-text" data-bind="quote">
+        SETIAP DETAIL KECIL MENENTUKAN KUALITAS AKHIR
+      </blockquote>
+    </section>
+
+    <!-- ================= PROJECT TEASER ================= -->
+    <section class="project-teaser" id="project-teaser" aria-label="Projects">
+      <div class="project-teaser-lines" aria-hidden="true">
+        <div class="project-line project-line--a" data-project-line>
+          <span class="project-line-word">PROJECT</span>
+          <span class="project-line-word">PROJECT</span>
+          <span class="project-line-word">PROJECT</span>
+          <span class="project-line-word">PROJECT</span>
+          <span class="project-line-word">PROJECT</span>
+          <span class="project-line-word">PROJECT</span>
+          <span class="project-line-word">PROJECT</span>
+        </div>
+        <div class="project-line project-line--b" data-project-line>
+          <span class="project-line-word">PROJECT</span>
+          <span class="project-line-img"><img src="assets/img/socks.svg" alt="" width="200" height="200" loading="lazy"></span>
+          <span class="project-line-word">PROJECT</span>
+          <span class="project-line-img"><img src="assets/img/tomato.svg" alt="" width="200" height="200" loading="lazy"></span>
+          <span class="project-line-word">PROJECT</span>
+        </div>
+      </div>
+    </section>
+
+    <!-- ================= PROJECTS ================= -->
+    <section class="projects" id="projects">
+      <div class="container">
+        <header class="projects-head">
+          <div class="plaque font-c" data-plaque>Projects</div>
+          <p class="projects-sub">Web, quality, &amp; automation</p>
+        </header>
+
+        <div class="projects-grid" id="projects-grid"></div>
+
+        <div class="projects-pagination" aria-label="Navigasi project">
+          <button class="projects-page-btn" id="projects-prev" type="button">← <span>Previous</span></button>
+          <strong id="projects-page-label">Page 1 of 1</strong>
+          <button class="projects-page-btn" id="projects-next" type="button"><span>Next</span> →</button>
+        </div>
+
+        <div class="projects-cta">
+          <a class="btn btn--ghost" href="#contact" data-scroll><span>Punya proyek? Mari bicara</span><span class="btn-arrow" aria-hidden="true">→</span></a>
+        </div>
+      </div>
+    </section>
+
+    <!-- ================= TOOLS ================= -->
+    <section class="tools" id="tools" aria-labelledby="tools-title">
+      <div class="container">
+        <header class="tools-head">
+          <p class="section-kicker">Keahlian</p>
+          <h2 class="section-title font-c" id="tools-title">Tools &amp; Languages</h2>
+          <p class="section-sub">Teknologi yang saya gunakan, dikelompokkan berdasarkan kategori.</p>
+        </header>
+
+        <div class="tech-grid" id="tech-grid"></div>
+
+        <p class="tech-note">Daftar ini menunjukkan tools yang saya gunakan — tanpa klaim tingkat kemahiran atau persentase.</p>
+      </div>
+
+      <div class="marquee tools-marquee" aria-hidden="true">
+        <div class="marquee-track" id="tech-marquee"></div>
+      </div>
+    </section>
+
+    <!-- ================= CERTIFICATES ================= -->
+    <section class="certs" id="certificates">
+      <div class="certs-deco" aria-hidden="true">
+        <svg class="certs-deco-star" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1" stroke-linecap="round" stroke-linejoin="round"><path d="M11.525 2.295a.53.53 0 0 1 .95 0l2.31 4.679a2.123 2.123 0 0 0 1.595 1.16l5.166.756a.53.53 0 0 1 .294.904l-3.736 3.638a2.123 2.123 0 0 0-.611 1.878l.882 5.14a.53.53 0 0 1-.771.56l-4.618-2.428a2.122 2.122 0 0 0-1.973 0L6.396 21.01a.53.53 0 0 1-.77-.56l.881-5.139a2.122 2.122 0 0 0-.611-1.879L2.16 9.795a.53.53 0 0 1 .294-.906l5.165-.755a2.122 2.122 0 0 0 1.597-1.16z"/></svg>
+        <svg class="certs-deco-badge" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1" stroke-linecap="round" stroke-linejoin="round"><path d="M3.85 8.62a4 4 0 0 1 4.78-4.77 4 4 0 0 1 6.74 0 4 4 0 0 1 4.78 4.78 4 4 0 0 1 0 6.74 4 4 0 0 1-4.77 4.78 4 4 0 0 1-6.75 0 4 4 0 0 1-4.78-4.77 4 4 0 0 1 0-6.76Z"/><path d="m9 12 2 2 4-4"/></svg>
+      </div>
+
+      <div class="certs-inner">
+        <header class="certs-head" data-certs-head>
+          <p class="section-kicker">Rekam Jejak</p>
+          <h2 class="certs-title font-c" data-cert-heading>Certificates &amp; Achievements</h2>
+          <p class="certs-sub" data-cert-sub>Sertifikasi dan pencapaian profesional yang menunjukkan keahlian teknis serta proses belajar berkelanjutan.</p>
+        </header>
+
+        <div class="certs-progress" aria-hidden="true">
+          <span class="certs-progress-bar" id="certs-progress-bar"></span>
+        </div>
+
+        <div class="certs-slider">
+          <div class="certs-track" id="certs-track" tabindex="0" aria-label="Daftar sertifikat, dapat digulir"></div>
+        </div>
+
+        <div class="certs-controls">
+          <button class="certs-arrow" type="button" id="certs-prev" aria-label="Sertifikat sebelumnya">
+            <svg viewBox="0 0 26 16" aria-hidden="true"><path d="M19.34.93 25.7 7.29a1 1 0 0 1 0 1.42l-6.36 6.36a1 1 0 1 1-1.42-1.41L22.59 9H1a1 1 0 1 1 0-2h21.59L17.93 2.35A1 1 0 1 1 19.34.93Z" fill="currentColor" transform="scale(-1 1) translate(-26 0)"/></svg>
+          </button>
+          <div class="certs-dots" id="certs-dots" role="tablist" aria-label="Pilih sertifikat"></div>
+          <button class="certs-arrow" type="button" id="certs-next" aria-label="Sertifikat berikutnya">
+            <svg viewBox="0 0 26 16" aria-hidden="true"><path d="M19.34.93 25.7 7.29a1 1 0 0 1 0 1.42l-6.36 6.36a1 1 0 1 1-1.42-1.41L22.59 9H1a1 1 0 1 1 0-2h21.59L17.93 2.35A1 1 0 1 1 19.34.93Z" fill="currentColor"/></svg>
+          </button>
+        </div>
+      </div>
+    </section>
+
+    <!-- ================= CONTACT / FOOTER ================= -->
+    <footer class="contact" id="contact">
+      <div class="contact-marquee" aria-hidden="true">
+        <div class="marquee-track" id="contact-marquee"></div>
+      </div>
+
+      <div class="container">
+        <div class="contact-grid">
+          <div class="contact-left">
+            <p class="section-kicker">Kontak</p>
+            <h2 class="contact-name font-c" data-bind="name">Muhammad Daniel Assaqovi</h2>
+            <p class="contact-role" data-bind="role">Web Developer &amp; QA Engineer</p>
+
+            <div class="contact-email-row">
+              <a class="contact-email" href="mailto:hpdaniel828@gmail.com" data-bind-href-email>
+                <span data-bind="email">hpdaniel828@gmail.com</span>
+                <span class="contact-email-line" aria-hidden="true"></span>
+              </a>
+              <button class="copy-btn" type="button" id="copy-email" aria-label="Salin alamat email">
+                <svg viewBox="0 0 24 24" aria-hidden="true" focusable="false">
+                  <rect x="9" y="9" width="11" height="11" rx="1.5" fill="none" stroke="currentColor" stroke-width="1.6"/>
+                  <path d="M15 9V6.5A1.5 1.5 0 0 0 13.5 5h-8A1.5 1.5 0 0 0 4 6.5v8A1.5 1.5 0 0 0 5.5 16H9" fill="none" stroke="currentColor" stroke-width="1.6"/>
+                </svg>
+                <span>Salin</span>
+              </button>
+            </div>
+
+            <p class="contact-status">
+              <span class="contact-status-dot" aria-hidden="true"></span>
+              Terbuka untuk kolaborasi dan diskusi
+            </p>
+          </div>
+
+          <div class="contact-right">
+            <div id="contact-paragraphs" class="contact-copy"></div>
+            <ul class="contact-links" id="contact-socials" aria-label="Tautan sosial dan kontak"></ul>
+          </div>
+        </div>
+
+        <div class="toast" id="toast" role="status" aria-live="polite"></div>
+
+        <div class="footer-line">
+          <span>© <span id="year">2026</span> <span data-bind="name">Muhammad Daniel Assaqovi</span></span>
+          <span data-bind="footer.note">Dibangun dengan GSAP &amp; Lenis.</span>
+          <a class="footer-top" href="#home" data-scroll>Kembali ke atas ↑</a>
+        </div>
+      </div>
+    </footer>
+  </main>
+
+  <!-- ================= PROJECT MODAL ================= -->
+  <div class="modal" id="project-modal" role="dialog" aria-modal="true" aria-labelledby="modal-title" hidden>
+    <div class="modal-backdrop" data-modal-close></div>
+    <div class="modal-panel" role="document">
+      <div class="modal-head">
+        <div class="modal-logo" id="modal-logo" aria-hidden="true">UI</div>
+        <div class="modal-head-main">
+          <h3 class="modal-title font-c" id="modal-title">Judul</h3>
+          <p class="modal-sub" id="modal-sub">Subtitle</p>
+          <div class="modal-meta">
+            <span class="modal-meta-item">
+              <svg viewBox="0 0 24 24" aria-hidden="true"><circle cx="12" cy="8" r="3.5"/><path d="M5 20c0-3.6 3.1-6 7-6s7 2.4 7 6"/></svg>
+              <b id="modal-role">Role</b>
+            </span>
+            <span class="modal-meta-item">
+              <svg viewBox="0 0 24 24" aria-hidden="true"><rect x="3.5" y="5.5" width="17" height="15"/><path d="M3.5 10h17M8 3v5M16 3v5"/></svg>
+              <b id="modal-date">2026</b>
+            </span>
+          </div>
+        </div>
+        <div class="modal-head-side">
+          <span class="modal-status" id="modal-status">ACTIVE</span>
+          <button class="modal-close" type="button" data-modal-close aria-label="Tutup detail proyek">✕</button>
+        </div>
+      </div>
+
+      <div class="modal-body">
+        <div class="modal-col modal-col--left">
+          <section class="detail-panel detail-panel--blue">
+            <h4 class="detail-panel-head"><span class="detail-icon">‹›</span>How We Built It</h4>
+            <p class="detail-panel-body" id="modal-overview"></p>
+          </section>
+          <section class="detail-panel detail-panel--pink">
+            <h4 class="detail-panel-head"><span class="detail-icon">!</span>Technical Challenges</h4>
+            <ul class="detail-panel-list" id="modal-challenges"></ul>
+          </section>
+          <section class="detail-panel detail-panel--green">
+            <h4 class="detail-panel-head"><span class="detail-icon">✓</span>Engineering Outcomes</h4>
+            <ul class="detail-panel-list" id="modal-outcomes"></ul>
+          </section>
+        </div>
+
+        <div class="modal-col modal-col--mid">
+          <div class="arch-head">
+            <span class="arch-title"><span class="arch-icon">▤</span>System Architecture</span>
+            <span class="arch-badge">Production</span>
+          </div>
+          <div class="mockup-browser mockup-browser--main">
+            <div class="mockup-browser-bar"><i></i><i></i><i></i><span id="modal-preview-url">project preview</span></div>
+            <img id="modal-image" src="assets/img/project-1.svg" alt="" width="800" height="450">
+          </div>
+          <div class="mockup-shots">
+            <div class="mockup-shot"><img id="modal-shot-1" src="assets/img/project-1.svg" alt="" width="400" height="260"></div>
+            <div class="mockup-shot"><img id="modal-shot-2" src="assets/img/project-1.svg" alt="" width="400" height="260"></div>
+          </div>
+          <div class="arch-pills" id="modal-pills"></div>
+          <a class="modal-architecture" id="modal-architecture" href="#" target="_blank" rel="noreferrer"><span aria-hidden="true">◉</span> View Architecture</a>
+        </div>
+
+        <div class="modal-col modal-col--right">
+          <h4 class="tech-stack-head">Tech Stack</h4>
+          <div class="modal-tags" id="modal-tags"></div>
+          <a class="modal-code-btn" id="modal-code" href="#" target="_blank" rel="noreferrer"><span aria-hidden="true">⌘</span> View Code</a>
+          <a class="modal-live-btn" id="modal-live" href="#" target="_blank" rel="noreferrer"><span aria-hidden="true">◎</span> Live System</a>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- ================= SCRIPTS =================
+       `is:inline` membuat Astro menuliskan tag ini apa adanya: tidak
+       di-bundle, tidak diubah jadi `type="module"`, dan urutan eksekusi
+       tetap sama seperti versi statis (tech.js -> content.js -> vendor
+       -> main.js). Ini penting karena main.js membaca window.SITE dan
+       window.TECH_STACK yang disiapkan skrip sebelumnya. -->
+  <script is:inline src="assets/js/tech.js"></script>
+  <script is:inline src="assets/js/content.js"></script>
+  <script is:inline src="vendor/gsap.min.js"></script>
+  <script is:inline src="vendor/ScrollTrigger.min.js"></script>
+  <script is:inline src="vendor/lenis.min.js"></script>
+  <script is:inline src="assets/js/main.js"></script>
+</BaseLayout>

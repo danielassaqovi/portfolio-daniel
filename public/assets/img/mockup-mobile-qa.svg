@@ -1,0 +1,75 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1200" height="750" viewBox="0 0 1200 750" role="img" aria-label="Mockup keluaran CLI Universal Mobile QA">
+  <defs>
+    <linearGradient id="bg" x1="0" y1="0" x2="1" y2="1">
+      <stop offset="0" stop-color="#0f1720"/>
+      <stop offset="1" stop-color="#1b2a35"/>
+    </linearGradient>
+  </defs>
+
+  <rect width="1200" height="750" fill="url(#bg)"/>
+
+  <!-- Top bar -->
+  <rect width="1200" height="58" fill="#0a1118"/>
+  <circle cx="34" cy="29" r="6" fill="#ef5350"/>
+  <circle cx="54" cy="29" r="6" fill="#f5b301"/>
+  <circle cx="74" cy="29" r="6" fill="#22c55e"/>
+  <text x="600" y="35" text-anchor="middle" font-family="Consolas, monospace" font-size="14" fill="#9fb3c8">mobileqa — dart run bin/mobileqa.dart</text>
+
+  <!-- Header -->
+  <text x="60" y="122" font-family="Arial, sans-serif" font-size="36" font-weight="800" fill="#f2ece1">UNIVERSAL MOBILE QA</text>
+  <text x="60" y="154" font-family="Arial, sans-serif" font-size="16" fill="#8fa6b8">Dart CLI · ADB transport · Docker · config-driven suites</text>
+
+  <!-- Capability cards -->
+  <g font-family="Arial, sans-serif">
+    <rect x="60" y="186" width="200" height="92" rx="6" fill="#14212b" stroke="#2b3d4d"/>
+    <text x="80" y="218" font-size="12" fill="#8fa6b8">CONFIGS</text>
+    <text x="80" y="258" font-size="30" font-weight="800" fill="#f2ece1">YAML</text>
+
+    <rect x="272" y="186" width="200" height="92" rx="6" fill="#14212b" stroke="#2b3d4d"/>
+    <text x="292" y="218" font-size="12" fill="#8fa6b8">SUITES</text>
+    <text x="292" y="258" font-size="30" font-weight="800" fill="#f2ece1">Generic</text>
+
+    <rect x="484" y="186" width="200" height="92" rx="6" fill="#14212b" stroke="#2b3d4d"/>
+    <text x="504" y="218" font-size="12" fill="#8fa6b8">TRANSPORT</text>
+    <text x="504" y="258" font-size="30" font-weight="800" fill="#f2ece1">ADB</text>
+
+    <rect x="696" y="186" width="200" height="92" rx="6" fill="#14212b" stroke="#2b3d4d"/>
+    <text x="716" y="218" font-size="12" fill="#8fa6b8">ARTIFACTS</text>
+    <text x="716" y="258" font-size="26" font-weight="800" fill="#f2ece1">JSON+HTML</text>
+
+    <rect x="908" y="186" width="232" height="92" rx="6" fill="#14212b" stroke="#2b3d4d"/>
+    <text x="928" y="218" font-size="12" fill="#8fa6b8">NO DEVICE</text>
+    <text x="928" y="258" font-size="26" font-weight="800" fill="#f5b301">skipped</text>
+  </g>
+
+  <!-- Terminal -->
+  <rect x="60" y="306" width="1080" height="396" rx="6" fill="#0b141b" stroke="#2b3d4d"/>
+  <g font-family="Consolas, monospace" font-size="13">
+
+    <text x="84" y="338" fill="#5f7b90">$ dart run bin/mobileqa.dart device-check</text>
+    <text x="1120" y="338" text-anchor="end" fill="#22c55e" font-size="12">authorized</text>
+
+    <text x="84" y="366" fill="#8fa6b8">  device   R58M10XXXX · Android 13 · online</text>
+
+    <text x="84" y="398" fill="#5f7b90">$ dart run bin/mobileqa.dart list-apps</text>
+    <text x="1120" y="398" text-anchor="end" fill="#22c55e" font-size="12">ok</text>
+
+    <text x="84" y="426" fill="#8fa6b8">  com.example.dragonfruit</text>
+
+    <text x="84" y="458" fill="#5f7b90">$ dart run bin/mobileqa.dart test --app dragon_fruit --suite generic</text>
+
+    <text x="104" y="486" fill="#22c55e">✓ app installed and launchable</text>
+    <text x="104" y="510" fill="#22c55e">✓ required permissions declared</text>
+    <text x="104" y="534" fill="#22c55e">✓ core navigation reachable</text>
+    <text x="104" y="558" fill="#f5b301">– device-specific case skipped (no authorized target)</text>
+    <text x="104" y="582" fill="#22c55e">✓ no crash on launch</text>
+
+    <text x="84" y="614" fill="#5f7b90">$ dart run bin/mobileqa.dart report</text>
+    <text x="1120" y="614" text-anchor="end" fill="#22c55e" font-size="12">generated</text>
+
+    <text x="104" y="642" fill="#8fa6b8">artifacts/report.json · artifacts/report.html · artifacts/screens/</text>
+
+    <text x="84" y="676" fill="#5f7b90">$ docker compose run --rm mobileqa device-check</text>
+    <text x="1120" y="676" text-anchor="end" fill="#9fb3c8" font-size="12">ADB host:5037</text>
+  </g>
+</svg>

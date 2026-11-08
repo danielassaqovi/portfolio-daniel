@@ -1,0 +1,80 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1200" height="750" viewBox="0 0 1200 750" role="img" aria-label="Mockup laporan pengujian otomatis SIAKAD QA Automation">
+  <defs>
+    <linearGradient id="bg" x1="0" y1="0" x2="1" y2="1">
+      <stop offset="0" stop-color="#0f1720"/>
+      <stop offset="1" stop-color="#1b2a35"/>
+    </linearGradient>
+  </defs>
+
+  <rect width="1200" height="750" fill="url(#bg)"/>
+
+  <!-- Top bar -->
+  <rect width="1200" height="58" fill="#0a1118"/>
+  <circle cx="34" cy="29" r="6" fill="#ef5350"/>
+  <circle cx="54" cy="29" r="6" fill="#f5b301"/>
+  <circle cx="74" cy="29" r="6" fill="#22c55e"/>
+  <text x="600" y="35" text-anchor="middle" font-family="Consolas, monospace" font-size="14" fill="#9fb3c8">siakad-qa-automation — Playwright report</text>
+
+  <!-- Header -->
+  <text x="60" y="125" font-family="Arial, sans-serif" font-size="38" font-weight="800" fill="#f2ece1">SIAKAD QA AUTOMATION</text>
+  <text x="60" y="157" font-family="Arial, sans-serif" font-size="16" fill="#8fa6b8">Read-only test suite • https://siakad.polinema.ac.id</text>
+
+  <!-- Summary cards -->
+  <g font-family="Arial, sans-serif">
+    <rect x="60" y="190" width="200" height="92" rx="6" fill="#14212b" stroke="#2b3d4d"/>
+    <text x="80" y="222" font-size="12" fill="#8fa6b8">PASSED</text>
+    <text x="80" y="262" font-size="34" font-weight="800" fill="#22c55e">18</text>
+
+    <rect x="278" y="190" width="200" height="92" rx="6" fill="#14212b" stroke="#2b3d4d"/>
+    <text x="298" y="222" font-size="12" fill="#8fa6b8">SKIPPED</text>
+    <text x="298" y="262" font-size="34" font-weight="800" fill="#f5b301">7</text>
+
+    <rect x="496" y="190" width="200" height="92" rx="6" fill="#14212b" stroke="#2b3d4d"/>
+    <text x="516" y="222" font-size="12" fill="#8fa6b8">FAILED</text>
+    <text x="516" y="262" font-size="34" font-weight="800" fill="#ef5350">0</text>
+
+    <rect x="714" y="190" width="200" height="92" rx="6" fill="#14212b" stroke="#2b3d4d"/>
+    <text x="734" y="222" font-size="12" fill="#8fa6b8">DURATION</text>
+    <text x="734" y="262" font-size="34" font-weight="800" fill="#f2ece1">25s</text>
+
+    <rect x="932" y="190" width="208" height="92" rx="6" fill="#14212b" stroke="#2b3d4d"/>
+    <text x="952" y="222" font-size="12" fill="#8fa6b8">BROWSER</text>
+    <text x="952" y="258" font-size="22" font-weight="800" fill="#f2ece1">Chromium</text>
+  </g>
+
+  <!-- Test list -->
+  <g font-family="Consolas, monospace" font-size="14">
+    <rect x="60" y="312" width="1080" height="388" rx="6" fill="#0b141b" stroke="#2b3d4d"/>
+
+    <text x="84" y="348" fill="#5f7b90">tests/public/01-login.spec.js</text>
+    <text x="700" y="348" fill="#22c55e">✓ login form tampil lengkap</text>
+    <text x="1080" y="348" text-anchor="end" fill="#5f7b90">2.8s</text>
+
+    <text x="84" y="380" fill="#22c55e">✓ validasi username &amp; password kosong</text>
+    <text x="1080" y="380" text-anchor="end" fill="#5f7b90">1.9s</text>
+
+    <text x="84" y="412" fill="#22c55e">✓ toggle tampilkan password</text>
+    <text x="1080" y="412" text-anchor="end" fill="#5f7b90">1.0s</text>
+
+    <text x="84" y="444" fill="#22c55e">✓ modal reset password</text>
+    <text x="1080" y="444" text-anchor="end" fill="#5f7b90">1.3s</text>
+
+    <text x="84" y="484" fill="#5f7b90">tests/public/03-responsive.spec.js</text>
+    <text x="700" y="484" fill="#22c55e">✓ mobile • tablet • desktop</text>
+    <text x="1080" y="484" text-anchor="end" fill="#5f7b90">2.7s</text>
+
+    <text x="84" y="524" fill="#5f7b90">tests/auth/02-all-features.spec.js</text>
+    <text x="700" y="524" fill="#f5b301">– crawl seluruh menu sidebar</text>
+    <text x="1080" y="524" text-anchor="end" fill="#5f7b90">skip</text>
+
+    <text x="84" y="564" fill="#5f7b90">tests/auth/03-feature-map.spec.js</text>
+    <text x="700" y="564" fill="#f5b301">– KRS • KHS • jadwal • presensi</text>
+    <text x="1080" y="564" text-anchor="end" fill="#5f7b90">skip</text>
+
+    <text x="84" y="620" fill="#22c55e">✓ 18 passed</text>
+    <text x="290" y="620" fill="#f5b301">7 skipped (butuh kredensial)</text>
+    <text x="1080" y="620" text-anchor="end" fill="#9fb3c8">0 failed</text>
+  </g>
+
+  <rect x="60" y="712" width="1080" height="2" fill="#22323f"/>
+</svg>

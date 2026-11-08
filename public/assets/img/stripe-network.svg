@@ -1,0 +1,57 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 400 400" role="img" aria-label="Abstract network graph illustration">
+  <defs>
+    <radialGradient id="bg" cx=".5" cy=".45" r=".8">
+      <stop offset="0" stop-color="#151a20"/>
+      <stop offset="1" stop-color="#08090c"/>
+    </radialGradient>
+    <radialGradient id="node" cx=".35" cy=".3" r=".8">
+      <stop offset="0" stop-color="#f2ece1"/>
+      <stop offset=".4" stop-color="#c9a45c"/>
+      <stop offset="1" stop-color="#6c5226"/>
+    </radialGradient>
+    <filter id="soft" x="-60%" y="-60%" width="220%" height="220%">
+      <feGaussianBlur stdDeviation="14"/>
+    </filter>
+  </defs>
+  <rect width="400" height="400" fill="url(#bg)"/>
+  <g opacity=".18" stroke="#c9a45c" stroke-width="1">
+    <path d="M0 80h400M0 160h400M0 240h400M0 320h400"/>
+    <path d="M80 0v400M160 0v400M240 0v400M320 0v400"/>
+  </g>
+  <g stroke="#c9a45c" stroke-width="1.6" opacity=".5" fill="none">
+    <path d="M88 286L150 214 106 132 202 172 262 96 318 166 270 260 200 306 150 214"/>
+    <path d="M202 172L270 260M88 286L200 306M318 166L270 260M106 132L88 286M262 96L318 166M150 214L270 260"/>
+    <path d="M202 172L262 96M202 172L106 132"/>
+  </g>
+  <g stroke="#6fd6c2" stroke-width="1.4" opacity=".4" fill="none">
+    <path d="M200 306L262 96M88 286L318 166M106 132L270 260"/>
+  </g>
+  <circle cx="200" cy="200" r="120" fill="#c9a45c" opacity=".12" filter="url(#soft)"/>
+  <g fill="url(#node)">
+    <circle cx="202" cy="172" r="19"/>
+    <circle cx="262" cy="96" r="11"/>
+    <circle cx="150" cy="214" r="13"/>
+    <circle cx="270" cy="260" r="10"/>
+    <circle cx="88" cy="286" r="9"/>
+    <circle cx="106" cy="132" r="8"/>
+  </g>
+  <g fill="#0a0b0e">
+    <circle cx="202" cy="172" r="7"/>
+    <circle cx="262" cy="96" r="4"/>
+    <circle cx="150" cy="214" r="5"/>
+    <circle cx="270" cy="260" r="4"/>
+  </g>
+  <g fill="#6fd6c2">
+    <circle cx="318" cy="166" r="4"/>
+    <circle cx="200" cy="306" r="4"/>
+  </g>
+  <g fill="none" stroke="#f2ece1" stroke-width=".8" opacity=".22">
+    <circle cx="202" cy="172" r="32"/>
+    <circle cx="202" cy="172" r="52"/>
+    <path d="M202 116v14M202 214v14M146 172h14M244 172h14"/>
+  </g>
+  <g fill="#f2ece1" opacity=".45" font-family="monospace" font-size="10">
+    <text x="286" y="76">NODE_07</text>
+    <text x="58" y="330">200 OK</text>
+  </g>
+</svg>

@@ -1,0 +1,33 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 600 450" role="img" aria-label="Sertifikat Introduction to Financial Literacy dari Dicoding Indonesia">
+  <defs>
+    <linearGradient id="bgB" x1="0" y1="0" x2="1" y2="1">
+      <stop offset="0" stop-color="#14141b"/>
+      <stop offset="1" stop-color="#23232e"/>
+    </linearGradient>
+    <linearGradient id="goldB" x1="0" y1="0" x2="1" y2="1">
+      <stop offset="0" stop-color="#f0dcaf"/>
+      <stop offset="1" stop-color="#c9a45c"/>
+    </linearGradient>
+  </defs>
+  <rect width="600" height="450" fill="url(#bgB)"/>
+  <rect x="28" y="28" width="544" height="394" fill="none" stroke="#c9a45c" stroke-width="2"/>
+  <rect x="40" y="40" width="520" height="370" fill="none" stroke="#c9a45c" stroke-width="1" opacity=".35"/>
+
+  <circle cx="300" cy="100" r="30" fill="none" stroke="url(#goldB)" stroke-width="1.6"/>
+  <path d="m300 82 5 12 13 2-9 9 3 13-12-6-12 6 3-13-9-9 13-2z" fill="#c9a45c"/>
+
+  <text x="300" y="172" text-anchor="middle" font-family="Anton, Arial Narrow, Arial, sans-serif" font-size="34" letter-spacing="6" fill="#f2ece1">CERTIFICATE</text>
+  <text x="300" y="200" text-anchor="middle" font-family="Arial, sans-serif" font-size="11" letter-spacing="6" fill="#c9a45c">OF COMPLETION</text>
+  <line x1="180" y1="222" x2="420" y2="222" stroke="#c9a45c" stroke-width="1" opacity=".55"/>
+
+  <text x="300" y="256" text-anchor="middle" font-family="Georgia, serif" font-size="24" fill="#f2ece1">Muhammad Daniel Assaqovi</text>
+
+  <text x="300" y="292" text-anchor="middle" font-family="Arial, sans-serif" font-size="10" letter-spacing="4" fill="#a49d90">INTRODUCTION TO</text>
+  <text x="300" y="318" text-anchor="middle" font-family="Georgia, serif" font-size="20" fill="#f2ece1">Financial Literacy</text>
+  <text x="300" y="342" text-anchor="middle" font-family="Arial, sans-serif" font-size="11" letter-spacing="3" fill="#c9a45c">DICODING INDONESIA</text>
+
+  <line x1="104" y1="378" x2="224" y2="378" stroke="#c9a45c" stroke-width="1" opacity=".5"/>
+  <text x="164" y="394" text-anchor="middle" font-family="Arial, sans-serif" font-size="9" letter-spacing="2" fill="#8f8a80">AGU 2026 - AGU 2029</text>
+  <line x1="376" y1="378" x2="496" y2="378" stroke="#c9a45c" stroke-width="1" opacity=".5"/>
+  <text x="436" y="394" text-anchor="middle" font-family="Arial, sans-serif" font-size="9" letter-spacing="2" fill="#8f8a80">ID EYX4O1O5JXDL</text>
+</svg>

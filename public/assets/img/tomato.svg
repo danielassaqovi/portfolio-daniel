@@ -1,0 +1,76 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 240 240" role="img" aria-label="Ilustrasi tomat">
+  <defs>
+    <radialGradient id="body" cx=".36" cy=".3" r=".78">
+      <stop offset="0" stop-color="#ff8a68"/>
+      <stop offset=".28" stop-color="#f25a3c"/>
+      <stop offset=".62" stop-color="#d6331f"/>
+      <stop offset=".86" stop-color="#a81f15"/>
+      <stop offset="1" stop-color="#7d140d"/>
+    </radialGradient>
+    <radialGradient id="rim" cx=".5" cy=".5" r=".5">
+      <stop offset=".82" stop-color="#000" stop-opacity="0"/>
+      <stop offset="1" stop-color="#5c0d07" stop-opacity=".55"/>
+    </radialGradient>
+    <linearGradient id="leaf" x1=".2" y1="0" x2=".8" y2="1">
+      <stop offset="0" stop-color="#7fae52"/>
+      <stop offset=".5" stop-color="#4d7d33"/>
+      <stop offset="1" stop-color="#2b5122"/>
+    </linearGradient>
+    <linearGradient id="stem" x1="0" y1="0" x2="1" y2="0">
+      <stop offset="0" stop-color="#6f9a45"/>
+      <stop offset=".5" stop-color="#3f6a2a"/>
+      <stop offset="1" stop-color="#27471d"/>
+    </linearGradient>
+    <radialGradient id="gloss" cx=".5" cy=".5" r=".5">
+      <stop offset="0" stop-color="#fff" stop-opacity=".75"/>
+      <stop offset="1" stop-color="#fff" stop-opacity="0"/>
+    </radialGradient>
+    <filter id="shadow" x="-30%" y="-20%" width="160%" height="170%">
+      <feDropShadow dx="0" dy="10" stdDeviation="8" flood-color="#2a0603" flood-opacity=".45"/>
+    </filter>
+    <filter id="grain">
+      <feTurbulence type="fractalNoise" baseFrequency=".85" numOctaves="3" seed="7"/>
+      <feColorMatrix type="saturate" values="0"/>
+      <feComponentTransfer><feFuncA type="linear" slope=".07"/></feComponentTransfer>
+      <feComposite in2="SourceGraphic" operator="in"/>
+    </filter>
+    <clipPath id="tomatoClip">
+      <path d="M120 52c36 0 66 27 68 62 2 38-29 70-68 70s-70-32-68-70c2-35 32-62 68-62Z"/>
+    </clipPath>
+  </defs>
+
+  <g filter="url(#shadow)">
+    <path d="M120 52c36 0 66 27 68 62 2 38-29 70-68 70s-70-32-68-70c2-35 32-62 68-62Z" fill="url(#body)"/>
+
+    <g clip-path="url(#tomatoClip)">
+      <ellipse cx="120" cy="122" rx="68" ry="62" fill="url(#rim)"/>
+      <!-- subtle lobes -->
+      <path d="M120 52c-14 24-20 48-18 74 2 28 12 48 26 58" fill="none" stroke="#8f1a10" stroke-width="2.4" opacity=".35"/>
+      <path d="M120 52c14 24 20 48 18 74-2 28-12 48-26 58" fill="none" stroke="#8f1a10" stroke-width="2.4" opacity=".28"/>
+      <path d="M52 92c22 4 42 14 54 30" fill="none" stroke="#fff0e0" stroke-width="2" opacity=".18"/>
+      <path d="M188 92c-22 4-42 14-54 30" fill="none" stroke="#fff0e0" stroke-width="2" opacity=".12"/>
+      <rect x="40" y="40" width="160" height="170" filter="url(#grain)" opacity=".9"/>
+    </g>
+
+    <!-- specular highlights -->
+    <ellipse cx="92" cy="88" rx="26" ry="16" fill="url(#gloss)" transform="rotate(-32 92 88)" opacity=".85"/>
+    <ellipse cx="77" cy="112" rx="8" ry="5" fill="#fff" opacity=".35" transform="rotate(-28 77 112)"/>
+    <ellipse cx="152" cy="158" rx="20" ry="10" fill="#ffb59a" opacity=".18" transform="rotate(24 152 158)"/>
+
+    <!-- calyx -->
+    <g fill="url(#leaf)">
+      <path d="M120 60c-8-12-8-24-2-34 3 11 9 20 18 26-6 3-12 6-16 8Z"/>
+      <path d="M120 60c10-10 23-14 35-11-8 8-17 13-27 15-3 0-6-2-8-4Z"/>
+      <path d="M120 61c12-4 24-2 34 4-10 5-20 7-30 5-2-2-3-6-4-9Z"/>
+      <path d="M119 62c12 3 22 10 28 19-11 1-21-2-29-9-1-3 0-7 1-10Z"/>
+      <path d="M118 63c8 8 13 18 13 29-9-5-16-13-19-22 1-3 3-5 6-7Z"/>
+      <path d="M117 62c2 10 1 21-4 30-6-8-8-19-5-28 3-1 6-2 9-2Z"/>
+      <path d="M116 61c-6 8-14 14-24 17 1-10 6-19 15-24 4 1 7 4 9 7Z"/>
+      <path d="M116 60c-10 3-21 3-31-2 7-7 17-10 27-8 2 3 3 7 4 10Z"/>
+      <path d="M118 59c-9-4-16-11-20-20 10 1 19 6 24 14-1 3-2 4-4 6Z"/>
+    </g>
+    <path d="M120 58c-3-8-3-16 0-24 4 8 4 17 0 24Z" fill="url(#stem)"/>
+    <ellipse cx="120" cy="62" rx="11" ry="6" fill="#3f6a2a"/>
+    <ellipse cx="117" cy="60" rx="4" ry="2" fill="#8fbd62" opacity=".6"/>
+  </g>
+</svg>

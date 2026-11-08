@@ -1,0 +1,50 @@
+---
+/**
+ * Kerangka HTML halaman.
+ *
+ * Isi <head> dipertahankan persis sama seperti versi statis sebelumnya:
+ * meta, Open Graph, favicon, preload font, dan satu skrip inline untuk
+ * mengganti class `no-js` menjadi `js` sebelum CSS dirender.
+ */
+interface Props {
+  title: string;
+  description: string;
+  ogDescription?: string;
+}
+
+const { title, description, ogDescription = description } = Astro.props;
+---
+
+<!doctype html>
+<html lang="id" class="no-js">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>{title}</title>
+    <meta name="description" content={description} />
+    <meta name="theme-color" content="#0a0a0c" />
+    <meta property="og:title" content={title} />
+    <meta property="og:description" content={ogDescription} />
+    <meta property="og:type" content="website" />
+    <link rel="icon" href="assets/img/favicon.svg" type="image/svg+xml" />
+    <link
+      rel="preload"
+      href="assets/fonts/anton-latin.woff2"
+      as="font"
+      type="font/woff2"
+      crossorigin
+    />
+    <link
+      rel="preload"
+      href="assets/fonts/worksans-latin.woff2"
+      as="font"
+      type="font/woff2"
+      crossorigin
+    />
+    <link rel="stylesheet" href="assets/css/style.css" />
+    <script is:inline>document.documentElement.classList.replace('no-js', 'js');</script>
+  </head>
+  <body>
+    <slot />
+  </body>
+</html>

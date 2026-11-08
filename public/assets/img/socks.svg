@@ -1,0 +1,93 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 260 260" role="img" aria-label="Ilustrasi sepasang kaos kaki">
+  <defs>
+    <linearGradient id="cream" x1=".2" y1="0" x2=".9" y2="1">
+      <stop offset="0" stop-color="#fffdf6"/>
+      <stop offset=".45" stop-color="#f3ece0"/>
+      <stop offset=".8" stop-color="#d9cdb8"/>
+      <stop offset="1" stop-color="#bbab92"/>
+    </linearGradient>
+    <linearGradient id="tan2" x1=".1" y1="0" x2=".9" y2="1">
+      <stop offset="0" stop-color="#ecdab8"/>
+      <stop offset=".45" stop-color="#d8bd90"/>
+      <stop offset=".8" stop-color="#b5945d"/>
+      <stop offset="1" stop-color="#8f7140"/>
+    </linearGradient>
+    <linearGradient id="cuffCream" x1="0" y1="0" x2="0" y2="1">
+      <stop offset="0" stop-color="#ffffff"/>
+      <stop offset=".5" stop-color="#f0e8da"/>
+      <stop offset="1" stop-color="#cbbda6"/>
+    </linearGradient>
+    <linearGradient id="cuffGreen" x1="0" y1="0" x2="0" y2="1">
+      <stop offset="0" stop-color="#3d6a4f"/>
+      <stop offset=".55" stop-color="#2c523c"/>
+      <stop offset="1" stop-color="#1c3829"/>
+    </linearGradient>
+    <linearGradient id="stripeGreen" x1="0" y1="0" x2="0" y2="1">
+      <stop offset="0" stop-color="#4f8060"/>
+      <stop offset="1" stop-color="#2f5a41"/>
+    </linearGradient>
+    <linearGradient id="stripeDark" x1="0" y1="0" x2="0" y2="1">
+      <stop offset="0" stop-color="#3a3c37"/>
+      <stop offset="1" stop-color="#1d1f1c"/>
+    </linearGradient>
+    <filter id="sh" x="-30%" y="-25%" width="160%" height="170%">
+      <feDropShadow dx="0" dy="9" stdDeviation="7" flood-color="#1a1206" flood-opacity=".4"/>
+    </filter>
+    <filter id="fabric">
+      <feTurbulence type="fractalNoise" baseFrequency=".9" numOctaves="3" seed="3"/>
+      <feColorMatrix type="saturate" values="0"/>
+      <feComponentTransfer><feFuncA type="linear" slope=".09"/></feComponentTransfer>
+      <feComposite in2="SourceGraphic" operator="in"/>
+    </filter>
+    <clipPath id="sockAClip">
+      <path d="M58 34h58v88c0 19-11 32-29 43l-22 14c-19 12-37-7-24-26l17-25Z"/>
+    </clipPath>
+    <clipPath id="sockBClip">
+      <path d="M146 22h58v94c0 19-12 33-30 44l-20 12c-20 12-37-8-23-27l15-23Z"/>
+    </clipPath>
+  </defs>
+
+  <g filter="url(#sh)">
+    <!-- back sock (tan) -->
+    <g>
+      <path d="M146 22h58v94c0 19-12 33-30 44l-20 12c-20 12-37-8-23-27l15-23Z" fill="url(#tan2)"/>
+      <g clip-path="url(#sockBClip)">
+        <path d="M146 22h58v26h-58Z" fill="#26261f"/>
+        <g fill="#31322a">
+          <rect x="146" y="54" width="58" height="9"/>
+          <rect x="146" y="70" width="58" height="9"/>
+        </g>
+        <path d="M202 22c8 30 6 62-4 92" fill="none" stroke="#f7ecd6" stroke-width="3" opacity=".28"/>
+        <path d="M153 30c-5 30-3 58 6 82" fill="none" stroke="#6b4f24" stroke-width="3" opacity=".28"/>
+        <path d="M170 118c10 4 18 10 22 19" fill="none" stroke="#8a6a37" stroke-width="3" opacity=".4"/>
+        <rect x="140" y="15" width="72" height="230" filter="url(#fabric)" opacity=".9"/>
+      </g>
+      <path d="M146 22h58v26c-20 4-39 3-58-2Z" fill="url(#cuffGreen)" opacity=".92"/>
+      <path d="M150 24h50" stroke="#5c8a6c" stroke-width="2" opacity=".5"/>
+    </g>
+
+    <!-- front sock (cream with green bands) -->
+    <g>
+      <path d="M58 34h58v88c0 19-11 32-29 43l-22 14c-19 12-37-7-24-26l17-25Z" fill="url(#cream)"/>
+      <g clip-path="url(#sockAClip)">
+        <g fill="url(#stripeGreen)">
+          <rect x="58" y="92" width="58" height="12"/>
+          <rect x="58" y="110" width="58" height="10"/>
+          <rect x="58" y="156" width="58" height="9" opacity=".55"/>
+        </g>
+        <path d="M104 34c7 30 5 61-5 91" fill="none" stroke="#fff" stroke-width="3.5" opacity=".55"/>
+        <path d="M68 40c-4 28-1 54 8 76" fill="none" stroke="#a8987c" stroke-width="4" opacity=".28"/>
+        <path d="M62 150c9 6 17 14 20 24" fill="none" stroke="#b6a487" stroke-width="4" opacity=".35"/>
+        <rect x="50" y="25" width="75" height="230" filter="url(#fabric)" opacity=".95"/>
+      </g>
+      <path d="M58 34h58v26c-20 4-40 3-58-1Z" fill="url(#cuffCream)"/>
+      <g stroke="#bfae93" stroke-width="1.4" opacity=".7">
+        <path d="M58 38h58M58 44h58M58 50h58M58 56h58"/>
+      </g>
+      <path d="M58 34h58" stroke="#fff" stroke-width="2" opacity=".8"/>
+    </g>
+
+    <!-- toe shading -->
+    <path d="M40 141c-8 12-5 26 7 33 12 7 25 2 32-8" fill="none" stroke="#c9b999" stroke-width="3" opacity=".35"/>
+  </g>
+</svg>

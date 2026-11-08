@@ -1,0 +1,27 @@
+services:
+  # Produksi: build Astro di dalam image, lalu disajikan nginx.
+  # Perubahan kode memerlukan rebuild: docker compose up -d --build
+  web:
+    build: .
+    image: portfolio-site:latest
+    container_name: portfolio-site
+    ports:
+      - "8080:80"
+    restart: unless-stopped
+
+  # Mode pengembangan dengan hot reload Astro (opsional):
+  # docker compose --profile dev up dev
+  # Buka http://localhost:4321 — folder proyek di-mount langsung.
+  dev:
+    image: node:22-alpine
+    profiles: ["dev"]
+    working_dir: /app
+    command: sh -c "npm install && npm run dev -- --host 0.0.0.0"
+    ports:
+      - "4321:4321"
+    volumes:
+      - .:/app
+      - node_modules:/app/node_modules
+
+volumes:
+  node_modules:

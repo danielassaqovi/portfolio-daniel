@@ -1,0 +1,55 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="800" height="960" viewBox="0 0 800 960" role="img" aria-label="Portrait placeholder">
+  <defs>
+    <linearGradient id="bg" x1="0" y1="0" x2="1" y2="1">
+      <stop offset="0" stop-color="#17171d"/>
+      <stop offset="0.55" stop-color="#101014"/>
+      <stop offset="1" stop-color="#0a0a0c"/>
+    </linearGradient>
+    <radialGradient id="glow" cx="0.5" cy="0.32" r="0.62">
+      <stop offset="0" stop-color="#c9a45c" stop-opacity="0.34"/>
+      <stop offset="0.55" stop-color="#c9a45c" stop-opacity="0.07"/>
+      <stop offset="1" stop-color="#c9a45c" stop-opacity="0"/>
+    </radialGradient>
+    <linearGradient id="gold" x1="0" y1="0" x2="1" y2="1">
+      <stop offset="0" stop-color="#e8d3a2"/>
+      <stop offset="0.5" stop-color="#c9a45c"/>
+      <stop offset="1" stop-color="#8f6f33"/>
+    </linearGradient>
+    <pattern id="grain" width="160" height="160" patternUnits="userSpaceOnUse">
+      <filter id="noise">
+        <feTurbulence type="fractalNoise" baseFrequency="0.9" numOctaves="3" stitchTiles="stitch"/>
+        <feColorMatrix type="saturate" values="0"/>
+      </filter>
+      <rect width="160" height="160" filter="url(#noise)" opacity="0.16"/>
+    </pattern>
+  </defs>
+
+  <rect width="800" height="960" fill="url(#bg)"/>
+  <rect width="800" height="960" fill="url(#glow)"/>
+
+  <g fill="none" stroke="#c9a45c" stroke-opacity="0.28">
+    <circle cx="400" cy="352" r="208"/>
+    <circle cx="400" cy="352" r="266" stroke-dasharray="2 10"/>
+    <path d="M96 704c104-74 208-110 304-110s200 36 304 110" stroke-opacity="0.18"/>
+  </g>
+
+  <g font-family="Anton, Arial Narrow, Arial, sans-serif" text-anchor="middle" fill="url(#gold)">
+    <text x="400" y="372" font-size="168" letter-spacing="4">MDA</text>
+    <text x="400" y="436" font-family="'Work Sans', Arial, sans-serif" font-size="17" letter-spacing="9" fill="#e9e2d5" fill-opacity="0.72">PORTRAIT</text>
+  </g>
+
+  <g stroke="#f2ece1" stroke-opacity="0.16">
+    <line x1="120" y1="140" x2="120" y2="820"/>
+    <line x1="680" y1="140" x2="680" y2="820"/>
+  </g>
+
+  <g font-family="'Work Sans', Arial, sans-serif" fill="#f2ece1" fill-opacity="0.42" font-size="15" letter-spacing="6">
+    <text x="140" y="188">PROFILE</text>
+    <text x="660" y="188" text-anchor="end">2026</text>
+    <text x="140" y="820">REPLACE WITH</text>
+    <text x="140" y="846" fill-opacity="0.26">YOUR PHOTO</text>
+  </g>
+
+  <rect width="800" height="960" fill="url(#grain)"/>
+  <rect x="14" y="14" width="772" height="932" fill="none" stroke="#f2ece1" stroke-opacity="0.12"/>
+</svg>
