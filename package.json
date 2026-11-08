@@ -4,6 +4,9 @@
   "version": "2.0.0",
   "private": true,
   "description": "Portofolio Muhammad Daniel Assaqovi — dibangun dengan Astro",
+  "engines": {
+    "node": ">=22.23.4"
+  },
   "scripts": {
     "dev": "astro dev",
     "start": "astro dev",

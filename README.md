@@ -46,6 +46,16 @@ docker compose --profile dev up dev
 
 Buka <http://localhost:4321>. Folder proyek di-mount langsung ke container, jadi perubahan file langsung tampil.
 
+### Deploy ke Vercel
+
+Repo ini sudah siap dideploy tanpa konfigurasi tambahan:
+
+1. Di dashboard Vercel: **Add New → Project → Import Git Repository**, pilih `portfolio-daniel`.
+2. Framework Preset terdeteksi otomatis sebagai **Astro** (build `astro build`, output `dist`). Biarkan default.
+3. **Deploy**. Setiap push ke `main` akan memicu deploy baru.
+
+Versi Node dikunci lewat `engines.node` di `package.json` (Astro 7 membutuhkan Node ≥ 22.23.4), jadi Vercel tidak akan memakai versi yang terlalu lama. Tidak ada `.github/workflows/deploy.yml` karena Vercel melakukan build sendiri — workflow GitHub Actions hanya diperlukan untuk GitHub Pages.
+
 ---
 
 ## 2. Mengisi data CV (langkah penting)
