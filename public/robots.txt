@@ -1,0 +1,4 @@
+User-agent: *
+Allow: /
+
+Sitemap: https://daniel-assaqovi.vercel.app/sitemap.xml

@@ -2,9 +2,13 @@
 /**
  * Kerangka HTML halaman.
  *
- * Isi <head> dipertahankan persis sama seperti versi statis sebelumnya:
- * meta, Open Graph, favicon, preload font, dan satu skrip inline untuk
- * mengganti class `no-js` menjadi `js` sebelum CSS dirender.
+ * Isi <head> dipertahankan sama seperti versi statis sebelumnya — meta,
+ * Open Graph, favicon, preload font, dan satu skrip inline untuk mengganti
+ * class `no-js` menjadi `js` sebelum CSS dirender — dengan tambahan meta
+ * untuk pratinjau tautan (og:image, twitter card) dan canonical.
+ *
+ * `siteUrl` dipakai sebagai basis URL absolut. Kalau nanti dipasang domain
+ * sendiri, cukup ubah satu nilai di sini (atau lewat env PUBLIC_SITE_URL).
  */
 interface Props {
   title: string;
@@ -13,6 +17,10 @@ interface Props {
 }
 
 const { title, description, ogDescription = description } = Astro.props;
+
+const siteUrl = (import.meta.env.PUBLIC_SITE_URL || 'https://daniel-assaqovi.vercel.app').replace(/\/$/, '');
+const canonical = siteUrl + Astro.url.pathname;
+const ogImage = siteUrl + '/assets/img/og-cover.jpg';
 ---
 
 <!doctype html>
@@ -22,10 +30,27 @@ const { title, description, ogDescription = description } = Astro.props;
     <meta name="viewport" content="width=device-width, initial-scale=1" />
     <title>{title}</title>
     <meta name="description" content={description} />
+    <meta name="author" content="Muhammad Daniel Assaqovi" />
     <meta name="theme-color" content="#0a0a0c" />
+    <link rel="canonical" href={canonical} />
+
+    <meta property="og:type" content="website" />
+    <meta property="og:site_name" content="Muhammad Daniel Assaqovi" />
+    <meta property="og:locale" content="id_ID" />
+    <meta property="og:url" content={canonical} />
     <meta property="og:title" content={title} />
     <meta property="og:description" content={ogDescription} />
-    <meta property="og:type" content="website" />
+    <meta property="og:image" content={ogImage} />
+    <meta property="og:image:type" content="image/jpeg" />
+    <meta property="og:image:width" content="1200" />
+    <meta property="og:image:height" content="630" />
+    <meta property="og:image:alt" content="Muhammad Daniel Assaqovi — Web Developer & QA Engineer" />
+
+    <meta name="twitter:card" content="summary_large_image" />
+    <meta name="twitter:title" content={title} />
+    <meta name="twitter:description" content={ogDescription} />
+    <meta name="twitter:image" content={ogImage} />
+
     <link rel="icon" href="assets/img/favicon.svg" type="image/svg+xml" />
     <link
       rel="preload"
