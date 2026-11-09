@@ -1531,6 +1531,10 @@ body.is-ready .loader {
   display: grid;
   grid-template-columns: repeat(3, minmax(0, 1fr));
   align-items: stretch;
+  /* Baris tidak ikut melar saat grid diberi tinggi minimum (dipakai
+     pagination agar dokumen tidak memendek): sisa ruang mengendap di
+     bawah, bukan membuat kartu memanjang dengan ruang kosong. */
+  align-content: start;
   gap: 18px;
   margin-top: clamp(44px, 6vw, 68px);
 }
@@ -1854,7 +1858,12 @@ body.is-ready .loader {
   position: relative;
   width: min(1120px, 100%);
   max-height: 92vh;
+  max-height: 92dvh;
   overflow: auto;
+  /* Panel adalah area scroll sendiri: jangan biarkan gulirannya
+     merembet ke halaman di belakang (terutama di iOS/Android). */
+  overscroll-behavior: contain;
+  -webkit-overflow-scrolling: touch;
   background: #f7f4ee;
   border: 3px solid var(--ink);
   box-shadow: 14px 14px 0 rgba(10, 10, 12, 0.55);
@@ -2318,6 +2327,15 @@ body.is-ready .loader {
     grid-template-columns: 1fr 1fr;
   }
 
+  /* Header modal menempel di atas panel di semua layar sentuh/tablet
+     agar tombol tutup tidak hilang saat isi digulir. */
+  .modal-head {
+    position: sticky;
+    top: 0;
+    z-index: 5;
+    border-bottom: 3px solid var(--ink);
+  }
+
   .modal-col--right {
     grid-column: 1 / -1;
     flex-direction: row;
@@ -2343,6 +2361,12 @@ body.is-ready .loader {
 
   .modal-head {
     flex-wrap: wrap;
+    /* Header menempel di atas panel agar tombol tutup selalu terjangkau
+       walau isi modal sudah digulir jauh ke bawah. Latar tetap gelap
+       seperti desain aslinya (judul berwarna putih). */
+    position: sticky;
+    top: 0;
+    z-index: 5;
   }
 
   .modal-logo {
@@ -2352,7 +2376,7 @@ body.is-ready .loader {
   .modal-head-side {
     width: 100%;
     justify-content: space-between;
-    padding: 0 16px 16px;
+    padding: 0 16px 12px;
   }
 
   .mockup-shots,
@@ -2861,6 +2885,7 @@ body.is-ready .loader {
 .certs-arrow {
   display: grid;
   place-items: center;
+  position: relative;
   width: 42px;
   height: 36px;
   padding: 0;
@@ -2876,6 +2901,18 @@ body.is-ready .loader {
 .certs-arrow svg {
   width: 18px;
   height: 12px;
+  pointer-events: none;
+}
+
+/* Area sentuh diperluas ke 44px tanpa mengubah ukuran tombol yang terlihat. */
+.certs-arrow::after {
+  content: '';
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  width: 44px;
+  height: 44px;
+  transform: translate(-50%, -50%);
 }
 
 .certs-arrow:hover {
@@ -2898,27 +2935,51 @@ body.is-ready .loader {
 .certs-dots {
   display: flex;
   align-items: center;
-  gap: 16px;
+  /* Jarak visual antar titik dijaga ~16px lewat lebar tombol 25px
+     dengan bulatan 9px di tengah (25 - 9 = 16). */
+  gap: 0;
 }
 
+/* Titik indikator: area sentuh diperbesar tanpa mengubah tampilan
+   bulatannya, supaya mudah ditekan di layar sentuh. */
 .certs-dots button {
-  width: 9px;
-  height: 9px;
+  position: relative;
+  width: 25px;
+  height: 25px;
   padding: 0;
   border: 0;
   border-radius: 999px;
-  background: rgba(242, 236, 225, 0.2);
+  background: none;
   cursor: pointer;
+}
+
+.certs-dots button::after {
+  content: '';
+  position: absolute;
+  inset: -8px;
+  border-radius: 999px;
+}
+
+.certs-dots button::before {
+  content: '';
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  width: 9px;
+  height: 9px;
+  border-radius: 999px;
+  background: rgba(242, 236, 225, 0.2);
+  transform: translate(-50%, -50%);
   transition: width 0.25s ease, height 0.25s ease, background-color 0.25s ease;
 }
 
-.certs-dots button:hover {
+.certs-dots button:hover::before {
   background: var(--gold-soft);
 }
 
 /* Semua dot berbentuk lingkaran seragam; yang aktif sedikit lebih besar,
    tidak melebar jadi pil seperti sebelumnya. */
-.certs-dots button.is-active {
+.certs-dots button.is-active::before {
   width: 10px;
   height: 10px;
   background: var(--gold);
@@ -3324,7 +3385,10 @@ html.is-ready .hero-cv {
 
   .xp-card {
     position: relative;
-    top: auto;
+    /* Penting: inline style `top` dari versi desktop (efek tumpuk
+       sticky) harus dikalahkan, kalau tidak kartu bergeser turun dan
+       menyisakan celah kosong besar. */
+    top: auto !important;
     min-height: 0;
     margin-bottom: 24px;
   }
@@ -3387,12 +3451,22 @@ html.is-ready .hero-cv {
     gap: 0;
     padding: 5px;
     max-width: calc(100% - 20px);
+    flex-wrap: nowrap;
+    overflow-x: auto;
+    scrollbar-width: none;
+    -webkit-overflow-scrolling: touch;
+    justify-content: flex-start;
+  }
+
+  .sub-nav-links::-webkit-scrollbar {
+    display: none;
   }
 
   .nav-link-item {
-    padding: 8px 10px;
-    font-size: 9px;
-    letter-spacing: 0.1em;
+    padding: 8px 12px;
+    font-size: 9.5px;
+    letter-spacing: 0.08em;
+    white-space: nowrap;
   }
 
   .hero {
@@ -3541,15 +3615,99 @@ html.is-ready .hero-cv {
   }
 
   .footer-line {
+    /* Di layar sempit tiga item footer tidak muat sebaris: tumpuk
+       vertikal agar tidak saling menimpa. */
+    flex-direction: column;
+    align-items: flex-start;
     justify-content: flex-start;
+    gap: 12px;
+    font-size: 8.5px;
+    letter-spacing: 0.12em;
+    line-height: 1.7;
   }
 }
 
 @media (max-width: 520px) {
+  .sub-nav {
+    width: calc(100% - 24px);
+  }
+
+  /* Pagination project: label di atas, dua tombol mengisi lebar
+     (sebelumnya tombol 145px memaksa keluar layar di ponsel kecil). */
+  .projects-pagination {
+    flex-wrap: wrap;
+    gap: 10px;
+    margin-top: 36px;
+    font-size: 10px;
+  }
+
+  #projects-page-label {
+    order: -1;
+    flex: 0 0 100%;
+    text-align: center;
+    letter-spacing: 0.12em;
+  }
+
+  .projects-page-btn {
+    flex: 1 1 0;
+    min-width: 0;
+    padding: 14px 10px;
+    font-size: 10px;
+    box-shadow: 4px 4px 0 var(--gold);
+  }
+
+  .projects-page-btn:disabled {
+    box-shadow: 4px 4px 0 rgba(201, 164, 92, 0.35);
+  }
+
+  /* Sentuhan lebih nyaman di ponsel: label kecil dinaikkan sedikit dan
+     tautan/ikon diberi area sentuh minimal 44px. */
+  .about-role {
+    font-size: 10px;
+  }
+
+  .project-status {
+    font-size: 10px;
+  }
+
+  .project-actions .btn {
+    min-height: 44px;
+    font-size: 10px;
+  }
+
+  .about-socials a {
+    width: 44px;
+    height: 44px;
+  }
+
+  .footer-top {
+    display: inline-block;
+    padding: 10px 0;
+  }
+
+  .sub-nav-links {
+    /* Tetap satu baris: bila label tidak muat, nav digeser mendatar
+       (bukan terlipat dua baris). */
+    flex-wrap: nowrap;
+    overflow-x: auto;
+    scrollbar-width: none;
+    -webkit-overflow-scrolling: touch;
+    justify-content: flex-start;
+    max-width: calc(100% - 16px);
+  }
+
+  .sub-nav-links::-webkit-scrollbar {
+    display: none;
+  }
+
   .nav-link-item {
-    padding: 8px 7px;
-    font-size: 8px;
+    padding: 9px 8px;
+    font-size: 10px;
     letter-spacing: 0.06em;
+    white-space: nowrap;
+    min-height: 34px;
+    display: inline-flex;
+    align-items: center;
   }
 
   .hero-actions {
@@ -3602,6 +3760,15 @@ html.is-ready .hero-cv {
 
   .cert-issuer {
     margin-top: 10px;
+    font-size: 9px;
+  }
+
+  .cert-type {
+    font-size: 9px;
+  }
+
+  .cert-cred {
+    font-size: 9px;
   }
 
   .certs-controls {
@@ -3668,7 +3835,7 @@ html.is-ready .hero-cv {
 
   .about-role {
     margin-top: 8px;
-    font-size: 9px;
+    font-size: 10px;
     letter-spacing: 0.2em;
   }
 
@@ -3740,11 +3907,98 @@ html.is-ready .hero-cv {
   }
 
   .modal {
-    padding: 12px;
+    padding: 10px;
   }
 
   .modal-panel {
+    /* Sisakan ruang untuk padding modal supaya panel tidak terpotong
+       oleh tinggi viewport dinamis di ponsel. */
+    max-height: calc(100dvh - 20px);
     box-shadow: 8px 8px 0 rgba(10, 10, 12, 0.55);
+  }
+}
+
+/* Ponsel sangat sempit (≤360px): rapatkan label nav agar tetap satu baris. */
+@media (max-width: 360px) {
+  .nav-link-item {
+    padding: 8px 5px;
+    font-size: 9px;
+    letter-spacing: 0.02em;
+  }
+}
+
+/* ============================================================
+   TARGET SENTUH (perangkat layar sentuh)
+   Perbesar area tekan tanpa mengubah tampilan visualnya.
+   ============================================================ */
+@media (hover: none) and (pointer: coarse) {
+  .about-socials a {
+    width: 44px;
+    height: 44px;
+  }
+
+  .contact-email,
+  .copy-btn,
+  .footer-top {
+    display: inline-flex;
+    align-items: center;
+    min-height: 44px;
+  }
+}
+
+/* ============================================================
+   ABOUT — LAYAR KECIL
+   Animasi pin + zoom dilepas di sini: pada layar sempit tinggi kartu
+   melebihi viewport sehingga isi terpotong dan menyisakan ruang kosong
+   sepanjang 400svh. Versi statis membuat seluruh isi terbaca normal.
+   ============================================================ */
+@media (max-width: 900px) {
+  .about-scroll {
+    height: auto;
+  }
+
+  .about-sticky {
+    position: static;
+    display: block;
+    height: auto;
+    overflow: visible;
+  }
+
+  .about-ticker {
+    position: relative;
+  }
+
+  .about-stage {
+    display: block;
+    height: auto;
+    padding: clamp(56px, 8vw, 84px) 18px clamp(48px, 8vw, 72px);
+  }
+
+  .about-word {
+    display: none;
+  }
+
+  .about-sky,
+  .about-scaler {
+    width: 100%;
+    max-width: 1200px;
+    margin-inline: auto;
+    transform: none !important;
+    clip-path: none !important;
+  }
+
+  .about-card {
+    transform: none !important;
+    filter: none !important;
+  }
+
+  /* Sisa inline style dari animasi desktop (mis. saat rotasi layar)
+     dinetralkan supaya isi tetap terlihat penuh. */
+  .about-socials li,
+  .about-word-char,
+  .about-ticker {
+    transform: none !important;
+    opacity: 1 !important;
   }
 }
 

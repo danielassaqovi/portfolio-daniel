@@ -536,15 +536,35 @@
     if (previous) {
       previous.disabled = page === 0;
       previous.onclick = function () {
-        if (page > 0) { grid.setAttribute('data-page', page - 1); renderProjects(); }
+        if (page > 0) goToProjectsPage(page - 1);
       };
     }
     if (next) {
       next.disabled = page === totalPages - 1;
       next.onclick = function () {
-        if (page < totalPages - 1) { grid.setAttribute('data-page', page + 1); renderProjects(); }
+        if (page < totalPages - 1) goToProjectsPage(page + 1);
       };
     }
+  }
+
+  // Ganti halaman project. Halaman bisa berisi jumlah kartu berbeda, jadi
+  // tinggi dokumen berubah dan tombol pagination seolah "melompat". Setelah
+  // render, tampilan digulir halus ke awal daftar kartu agar halaman baru
+  // selalu terbaca dari atas dan posisinya konsisten.
+  function goToProjectsPage(target) {
+    var grid = $('#projects-grid');
+    if (!grid) return;
+    grid.setAttribute('data-page', target);
+    renderProjects();
+
+    window.requestAnimationFrame(function () {
+      var top = grid.getBoundingClientRect().top + window.scrollY - 88;
+      if (window.__lenis && window.__lenis.scrollTo) {
+        window.__lenis.scrollTo(top, { immediate: false });
+      } else {
+        window.scrollTo({ top: top, behavior: 'smooth' });
+      }
+    });
   }
 
   /* ----------------------------------------------------------
@@ -691,7 +711,9 @@
     }
 
     function paint() {
-      current = realIndexOf(nearestDomIndex());
+      // Selama animasi tombol berjalan, `current` adalah sumber kebenaran
+      // (posisi scroll masih di tengah jalan), jadi jangan ditimpa.
+      if (!animating) current = realIndexOf(nearestDomIndex());
 
       dots.forEach(function (dot, i) {
         var active = i === current;
@@ -708,16 +730,22 @@
     /* Titik scroll untuk kartu ke-index. Selalu dipilih salinan yang arah
        geraknya sesuai (dir 1 = maju, -1 = mundur) agar animasi terlihat
        bergeser satu kartu, bukan melompat jauh. */
-    function targetFor(index, dir) {
+    function targetFor(index, dir, from) {
       var base = centerOf(cards[n + index]);
       var p = period();
       if (!p) return base;
 
-      var target = base + Math.round((track.scrollLeft - base) / p) * p;
-      if (dir > 0 && target < track.scrollLeft + 1) target += p;
-      if (dir < 0 && target > track.scrollLeft - 1) target -= p;
+      // `from` adalah posisi logis terakhir. Saat pengguna menekan tombol
+      // beruntun, animasi sebelumnya belum selesai sehingga scrollLeft
+      // masih di tempat lama; tanpa ini sebagian klik jadi hilang.
+      var start = typeof from === 'number' ? from : track.scrollLeft;
+      var target = base + Math.round((start - base) / p) * p;
+      if (dir > 0 && target < start + 1) target += p;
+      if (dir < 0 && target > start - 1) target -= p;
       return target;
     }
+
+    var pendingLeft = null;
 
     function markAnimating() {
       animating = true;
@@ -725,13 +753,30 @@
       settleTimer = window.setTimeout(function () {
         animating = false;
         recenter();
+        pendingLeft = track.scrollLeft;
         paint();
       }, 640);
     }
 
     function goTo(index, dir) {
       markAnimating();
-      track.scrollTo({ left: targetFor(index, dir), behavior: 'smooth' });
+      var from = pendingLeft != null ? pendingLeft : track.scrollLeft;
+      var left = targetFor(index, dir, from);
+      var p = period();
+      var max = track.scrollWidth - track.clientWidth;
+
+      // Di ujung rel, geser satu blok kloning (isinya identik, jadi tidak
+      // terlihat) agar animasi tetap punya ruang untuk bergerak.
+      if (p && left > max - 4) {
+        left = Math.max(0, left - p);
+        jumpTo(left);
+      } else if (p && left < 4) {
+        left = left + p;
+        jumpTo(left);
+      }
+
+      pendingLeft = left;
+      track.scrollTo({ left: left, behavior: 'smooth' });
       current = index;
       paint();
     }
@@ -775,7 +820,10 @@
 
       if (!animating && ready) {
         window.clearTimeout(idleTimer);
-        idleTimer = window.setTimeout(recenter, 180);
+        idleTimer = window.setTimeout(function () {
+          recenter();
+          pendingLeft = track.scrollLeft;
+        }, 180);
       }
     }, { passive: true });
 
@@ -913,15 +961,21 @@
 
     modal.addEventListener('keydown', function (event) {
       if (event.key !== 'Tab') return;
-      var focusable = $$('a[href], button:not([disabled]), [tabindex]:not([tabindex="-1"])', modal);
+      // Hanya elemen yang benar-benar tampil boleh jadi tujuan fokus;
+      // kalau tidak, Tab bisa keluar dari modal lewat elemen tersembunyi.
+      var focusable = $$('a[href], button:not([disabled]), [tabindex]:not([tabindex="-1"])', modal)
+        .filter(function (el) {
+          if (el.hasAttribute('hidden') || el.closest('[hidden]')) return false;
+          return el.offsetWidth > 0 || el.offsetHeight > 0 || el === document.activeElement;
+        });
       if (!focusable.length) return;
       var first = focusable[0];
       var last = focusable[focusable.length - 1];
 
-      if (event.shiftKey && document.activeElement === first) {
+      if (event.shiftKey && (document.activeElement === first || !modal.contains(document.activeElement))) {
         event.preventDefault();
         last.focus();
-      } else if (!event.shiftKey && document.activeElement === last) {
+      } else if (!event.shiftKey && (document.activeElement === last || !modal.contains(document.activeElement))) {
         event.preventDefault();
         first.focus();
       }
@@ -1031,6 +1085,7 @@
       $('.hero-kicker'),
       $('.hero-text'),
       $('.hero-tagline'),
+      $('.hero-actions'),
       $('.hero-scroll-hint'),
     ].filter(Boolean);
 
@@ -1198,6 +1253,12 @@
     var aboutScaler = $('[data-about-scaler]');
     var aboutChars = $$('.about-word-char');
 
+    // Animasi pin About hanya untuk layar lebar. Di layar kecil tinggi
+    // kartu melebihi viewport sehingga isinya terpotong, jadi section
+    // dirender statis (lihat aturan CSS max-width: 900px).
+    var aboutPinEnabled =
+      window.matchMedia('(min-width: 901px)').matches && !reduceMotion;
+
     function aboutFinalScale() {
       if (!aboutSky) return 0.9;
       var contentHeight = aboutSky.offsetHeight;
@@ -1205,7 +1266,7 @@
       return Math.min(0.9, Math.max(0.42, available / Math.max(contentHeight, 1)));
     }
 
-    if (aboutSky && aboutScaler) {
+    if (aboutPinEnabled && aboutSky && aboutScaler) {
       gsap.set(aboutChars, {
         scale: 0,
         rotation: function () {
@@ -1290,7 +1351,7 @@
         );
     }
 
-    if (aboutTicker) {
+    if (aboutTicker && aboutPinEnabled) {
       gsap.fromTo(
         aboutTicker,
         { xPercent: 0 },
@@ -1325,6 +1386,9 @@
 
     /* Experience cards */
     var cards = $$('[data-xp-card]');
+    // Efek kartu bertumpuk (sticky + scale) hanya untuk layar lebar.
+    // Di ponsel kartu mengalir normal agar tidak ada celah/geser.
+    var xpStackEnabled = window.matchMedia('(min-width: 901px)').matches && !reduceMotion;
     cards.forEach(function (card, index) {
       gsap.from(card, {
         y: 60,
@@ -1334,7 +1398,7 @@
         scrollTrigger: { trigger: card, start: 'top 85%', once: true },
       });
 
-      if (index < cards.length - 1) {
+      if (xpStackEnabled && index < cards.length - 1) {
         gsap.to(card, {
           scale: 0.965,
           ease: 'none',
@@ -1489,6 +1553,7 @@
       $('.hero-kicker'),
       $('.hero-text'),
       $('.hero-tagline'),
+      $('.hero-actions'),
       $('.hero-scroll-hint'),
     ].filter(Boolean);
 
@@ -1561,7 +1626,7 @@
         delay: 0.92,
         ease: 'power2.out',
       });
-      gsap.to('.hero-kicker, .hero-tagline', {
+      gsap.to('.hero-kicker, .hero-tagline, .hero-actions', {
         autoAlpha: 0,
         yPercent: 100,
         duration: 0.8,
@@ -1596,7 +1661,7 @@
         ease: 'expo.out',
         stagger: { each: 0.01, from: 'end' },
       });
-      gsap.to('.hero-kicker, .hero-tagline', {
+      gsap.to('.hero-kicker, .hero-tagline, .hero-actions', {
         autoAlpha: 1,
         yPercent: 0,
         duration: 0.8,
@@ -1660,16 +1725,58 @@
     document.body.classList.add('is-ready');
     document.documentElement.classList.add('is-ready');
 
-    if (window.scrollY > 0) {
-      if (window.__lenis) window.__lenis.scrollTo(0, { immediate: true });
-      else window.scrollTo(0, 0);
-    }
+    // Jangan paksa kembali ke atas: kalau pengguna me-refresh di tengah
+    // halaman, posisi terakhirnya dipulihkan (lihat restoreScroll).
+    restoreScroll();
 
     var loader = $('#loader');
     if (loader) loader.style.display = 'none';
 
     if (window.__playIntro) window.__playIntro();
     else finishLoader();
+  }
+
+  /* ----------------------------------------------------------
+     Scroll restoration
+     Browser modern memulihkan posisi scroll saat refresh, tetapi Lenis
+     mengambil alih dan mereset ke 0. Posisi disimpan sendiri supaya
+     refresh tidak melompat ke atas.
+     ---------------------------------------------------------- */
+  var SCROLL_KEY = 'portfolio:scrollY';
+
+  function saveScroll() {
+    try {
+      window.sessionStorage.setItem(SCROLL_KEY, String(Math.round(window.scrollY)));
+    } catch (error) {
+      /* sessionStorage bisa diblokir; abaikan. */
+    }
+  }
+
+  function readSavedScroll() {
+    try {
+      var value = Number(window.sessionStorage.getItem(SCROLL_KEY));
+      return Number.isFinite(value) && value > 0 ? value : 0;
+    } catch (error) {
+      return 0;
+    }
+  }
+
+  function restoreScroll() {
+    // Deep link (mis. /#projects) harus menang atas posisi tersimpan.
+    if (window.location.hash) return;
+    var target = readSavedScroll();
+    if (!target) return;
+
+    // Tunggu satu frame supaya tinggi dokumen sudah final (font & kartu
+    // sudah ter-render) sebelum posisinya dipulihkan.
+    window.requestAnimationFrame(function () {
+      if (window.__lenis && window.__lenis.scrollTo) {
+        window.__lenis.scrollTo(target, { immediate: true, force: true });
+      } else {
+        window.scrollTo(0, target);
+      }
+      if (window.ScrollTrigger) window.ScrollTrigger.refresh();
+    });
   }
 
   function scheduleLoader() {
@@ -1689,6 +1796,10 @@
     $$('#year').forEach(function (node) {
       node.textContent = String(year);
     });
+
+    // Simpan posisi scroll agar refresh tidak melompat ke atas.
+    window.addEventListener('pagehide', saveScroll);
+    window.addEventListener('beforeunload', saveScroll);
 
     bindContent();
     renderSocials($('#about-socials'), false);
