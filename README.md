@@ -1,4 +1,4 @@
-# Portfolio — Web Developer & QA Engineer
+# Portfolio — Full Stack Developer & QA Engineer
 
 Website portofolio satu halaman bergaya **editorial brutalist**: tipografi condensed besar, aksen garis tebal, kartu bertumpuk, dan marquee berjalan. Palet dibuat **gelap elegan** (charcoal, ivory, champagne gold) sebagai pembeda dari referensi, sementara struktur, layout, dan pola animasinya mengikuti referensi tersebut.
 

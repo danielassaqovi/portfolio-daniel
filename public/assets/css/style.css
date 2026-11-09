@@ -3710,6 +3710,20 @@ html.is-ready .hero-cv {
     align-items: center;
   }
 
+  /* Kicker peran lebih panjang ("Full Stack Developer & QA Engineer"):
+     rapatkan tracking agar tetap satu baris di ponsel. */
+  .hero-kicker {
+    gap: 8px;
+    font-size: 10px;
+    letter-spacing: 0.16em;
+  }
+
+  .hero-kicker-dot {
+    width: 6px;
+    height: 6px;
+    flex: none;
+  }
+
   .hero-actions {
     flex-direction: column;
     width: 100%;
@@ -3837,6 +3851,11 @@ html.is-ready .hero-cv {
     margin-top: 8px;
     font-size: 10px;
     letter-spacing: 0.2em;
+    text-wrap: balance;
+  }
+
+  .contact-role {
+    text-wrap: balance;
   }
 
   .about-copy {

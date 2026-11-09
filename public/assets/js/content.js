@@ -10,7 +10,7 @@ window.SITE = {
   // ----------------------------------------------------------
   name: 'Muhammad Daniel Assaqovi',
   heroLines: ['MUHAMMAD DANIEL', '"ASSAQOVI"'],
-  role: 'Web Developer & QA Engineer',
+  role: 'Full Stack Developer & QA Engineer',
   tagline:
     'Membangun aplikasi web dan mobile, lalu memastikan kualitasnya lewat pengujian yang terukur.',
   location: 'Indonesia',
@@ -68,10 +68,10 @@ window.SITE = {
     photo: 'assets/img/profile.jpeg',
     photoAlt: 'Foto profil Muhammad Daniel Assaqovi',
     heading: 'Muhammad Daniel Assaqovi',
-    subheading: 'Web Developer & QA Engineer',
+    subheading: 'Full Stack Developer & QA Engineer',
     // Boleh memakai <strong> dan <em> untuk penekanan.
     paragraphs: [
-      'Saya seorang <strong>web developer dan QA engineer</strong> yang bekerja dengan <strong>PHP/Laravel</strong>, <strong>JavaScript/Node.js</strong>, dan <strong>Flutter</strong> untuk membangun aplikasi web serta mobile.',
+      'Saya seorang <strong>full stack developer dan QA engineer</strong> yang bekerja dengan <strong>PHP/Laravel</strong>, <strong>JavaScript/Node.js</strong>, dan <strong>Flutter</strong> untuk membangun aplikasi web serta mobile.',
       'Di sisi kualitas, saya menggunakan <strong>Playwright</strong>, <strong>Cypress</strong>, dan <strong>Postman</strong> untuk menguji fungsionalitas dan API. Terbiasa memakai Git, Docker, dan Linux dalam alur kerja sehari-hari.',
     ],
   },
@@ -347,7 +347,7 @@ window.SITE = {
 
   footer: {
     paragraphs: [
-      'Web developer dan QA engineer yang membangun aplikasi web serta mobile, lalu menjaga kualitasnya melalui pengujian yang dapat diulang.',
+      'Full stack developer dan QA engineer yang membangun aplikasi web serta mobile, lalu menjaga kualitasnya melalui pengujian yang dapat diulang.',
       'Terbuka untuk berdiskusi soal pengembangan web, mobile, maupun pengujian perangkat lunak. Mari terhubung.',
     ],
     note: 'Dibangun dengan GSAP & Lenis.',
